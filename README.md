@@ -1,5 +1,5 @@
 # ajax-promises
-
+HTTP + ClojureScript + Promises
 ## Why?
 
 We have two other libraries for HTTP requests on cljs, why do we need another one?
