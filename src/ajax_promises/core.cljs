@@ -1,4 +1,4 @@
-(ns ajax-promises.main
+(ns ajax-promises.core
   (:import [goog.net EventType ErrorCode XhrIo])
   (:require [promesa.core :as p]))
 
@@ -33,15 +33,45 @@
                     :error-text (.getLastError target)}]
       (if (:success response)
         (resolve response)
-        (reject response)))))
+        (do
+          (.log js/console target)
+          (reject response))))))
 
-(defn xhr-request [uri method]
-  (let [body ""
-        headers {}]
+(def methods
+  {:get "GET"
+   :post "POST"
+   :put "PUT"})
+
+(defn xhr-request [{:keys [uri method body headers]
+                    :or {body ""
+                         headers {}}}]
+  (when-let [method (get methods method nil)]
+    ;; Throw an error if method isn't defined?
     (p/promise (fn [resolve reject]
                  (let [xhr (build-xhr {})]
                    (.listen xhr EventType.COMPLETE (build-listener resolve reject))
-                   (.send xhr uri method body headers))))))
+                   (.send xhr uri method body (clj->js headers)))))))
 
-(defn GET [uri]
-  (xhr-request uri "GET"))
+(defn GET [request]
+  (xhr-request (merge request {:method :get})))
+
+(defn POST [request]
+  (xhr-request (merge request {:method :post})))
+
+(defn PUT [request]
+  (xhr-request (merge request {:method :put})))
+
+(def DELETE)
+(def PATCH)
+(def OPTIONS)
+
+
+(def body "{
+   \"name\": \"string\",
+   \"description\": \"string\",
+   \"size\": \"L\",
+   \"origin\": {
+     \"country\": \"PO\",
+     \"city\": \"string\"
+   }
+ }")
