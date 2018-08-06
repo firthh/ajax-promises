@@ -1,5 +1,5 @@
 (set-env!
- :resource-paths #{"src" "html"}
+ :resource-paths #{"src"}
  :dependencies '[[org.clojure/clojurescript   "1.10.339"]
                  [funcool/promesa             "1.9.0"]
                  [crisptrutski/boot-cljs-test "0.3.5-SNAPSHOT" :scope "test"]
