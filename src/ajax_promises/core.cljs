@@ -40,7 +40,9 @@
 (def valid-methods
   {:get "GET"
    :post "POST"
-   :put "PUT"})
+   :put "PUT"
+   :head "HEAD"
+   :options "OPTIONS"})
 
 (defn xhr-request [{:keys [uri request-method body headers]
                     :or {body ""
@@ -56,6 +58,12 @@
 (defn GET [request]
   (xhr-request (merge request {:request-method :get})))
 
+(defn OPTIONS [request]
+  (xhr-request (merge request {:request-method :options})))
+
+(defn HEAD [request]
+  (xhr-request (merge request {:request-method :head})))
+
 (defn POST [request]
   (xhr-request (merge request {:request-method :post})))
 
@@ -64,7 +72,6 @@
 
 (def DELETE)
 (def PATCH)
-(def OPTIONS)
 
 (comment
 
