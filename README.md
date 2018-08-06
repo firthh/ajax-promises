@@ -12,6 +12,7 @@ Out of the box the other two libraries will do far more for you, they'll set con
 ## Using this library
 The request object passed to this library should take the form of the Ring request map. Requests will immediately return a promise that will eventually be resolved to contain a Ring response map. The implementation of promises used comes from [Promesa](https://funcool.github.io/promesa/latest/). Non-sucessful HTTP requests will be rejected but the value contained in the promise will still be a Ring response map. Success is defined by the `isSuccess()` method on the [XhrIo response](https://developers.google.com/closure/library/docs/xhrio)
 
+### Examples
 TODO
 
 ## TODO
@@ -21,18 +22,23 @@ TODO
   - [x] GET (manually tested)
   - [x] POST (manually tested)
   - [x] PUT (not tested)
-  - [ ] OPTIONS
+  - [x] HEAD
+  - [x] OPTIONS
   - [ ] DELETE
   - [ ] PATCH
 - [ ] Better support for authentication headers
+- [ ] Documentation
+## Running
 
-## Getting started
-
+### Testing
 ```sh
-# Start a repl
-clj --main cljs.main --compile ajax-promises.main --repl
-
-# Start a repl with node.js
-# Don't use this as node doesn't have XMLHttpRequest
-clj --main cljs.main --compile ajax-promises.main --repl --repl-env node
+# with nix to add nodejs otherwise we'll assume you've installed it yourself
+nix-shell
+# Install test dependencies
+npm install
+# Run the tests
+boot test-all
 ```
+
+### REPL
+TODO
