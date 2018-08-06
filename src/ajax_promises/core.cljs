@@ -37,7 +37,7 @@
           (.log js/console target)
           (reject response))))))
 
-(def methods
+(def valid-methods
   {:get "GET"
    :post "POST"
    :put "PUT"})
@@ -46,7 +46,7 @@
                     :or {body ""
                          headers {}}
                     :as request}]
-  (when-let [method (get methods request-method nil)]
+  (when-let [method (get valid-methods request-method nil)]
     ;; Throw an error if method isn't defined?
     (p/promise (fn [resolve reject]
                  (let [xhr (build-xhr (select-keys request [:timeout]))]
@@ -65,7 +65,6 @@
 (def DELETE)
 (def PATCH)
 (def OPTIONS)
-
 
 (comment
 

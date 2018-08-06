@@ -1,0 +1,16 @@
+{
+  "name": "ajax-promises",
+  "version": "0.0.1",
+  "description": "",
+  "dependencies": {},
+  "devDependencies": {
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-cljs-test": "^0.1.0",
+    "karma-firefox-launcher": "^1.1.0"
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-slimerjs-launcher": "^1.0.0",
+    "phantomjs-prebuilt": "^2.1.14",
+    "slimerjs": "^0.10.3"
+  }
+}
