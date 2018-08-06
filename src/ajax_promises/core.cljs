@@ -17,8 +17,8 @@
 
 (defn build-xhr
   "Builds an XhrIo object from the request parameters."
-  [{:keys [] :as request}]
-  (let [timeout (or (:timeout request) 0)]
+  [{:keys [timeout] :as request}]
+  (let [timeout (or timeout 0)]
     (doto (XhrIo.)
       (.setTimeoutInterval timeout))))
 
@@ -42,31 +42,34 @@
    :post "POST"
    :put "PUT"})
 
-(defn xhr-request [{:keys [uri method body headers]
+(defn xhr-request [{:keys [uri request-method body headers]
                     :or {body ""
-                         headers {}}}]
-  (when-let [method (get methods method nil)]
+                         headers {}}
+                    :as request}]
+  (when-let [method (get methods request-method nil)]
     ;; Throw an error if method isn't defined?
     (p/promise (fn [resolve reject]
-                 (let [xhr (build-xhr {})]
+                 (let [xhr (build-xhr (select-keys request [:timeout]))]
                    (.listen xhr EventType.COMPLETE (build-listener resolve reject))
                    (.send xhr uri method body (clj->js headers)))))))
 
 (defn GET [request]
-  (xhr-request (merge request {:method :get})))
+  (xhr-request (merge request {:request-method :get})))
 
 (defn POST [request]
-  (xhr-request (merge request {:method :post})))
+  (xhr-request (merge request {:request-method :post})))
 
 (defn PUT [request]
-  (xhr-request (merge request {:method :put})))
+  (xhr-request (merge request {:request-method :put})))
 
 (def DELETE)
 (def PATCH)
 (def OPTIONS)
 
 
-(def body "{
+(comment
+
+  (def body "{
    \"name\": \"string\",
    \"description\": \"string\",
    \"size\": \"L\",
@@ -74,4 +77,6 @@
      \"country\": \"PO\",
      \"city\": \"string\"
    }
- }")
+  }")
+
+  )
