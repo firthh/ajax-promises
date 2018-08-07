@@ -1,6 +1,6 @@
 (set-env!
  :resource-paths #{"src"}
- :dependencies '[[org.clojure/clojurescript   "1.10.339"]
+ :dependencies '[[org.clojure/clojurescript   "1.10.339" :scope "test"]
                  [funcool/promesa             "1.9.0"]
                  [crisptrutski/boot-cljs-test "0.3.5-SNAPSHOT" :scope "test"]
                  [adzerk/boot-cljs            "2.1.4" :scope "test"]
@@ -12,7 +12,7 @@
 
 (task-options!
  pom  {:project     'firthh/ajax-promises
-       :version     "0.1.0-SNAPSHOT"
+       :version     "0.1.1-SNAPSHOT"
        :description "Clojurescript HTTP library"
        :url         "https://github.com/firthh/ajax-promises"
        :scm         {:url "https://github.com/firthh/ajax-promises"}
