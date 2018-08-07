@@ -72,17 +72,3 @@
 
 (def DELETE)
 (def PATCH)
-
-(comment
-
-  (def body "{
-   \"name\": \"string\",
-   \"description\": \"string\",
-   \"size\": \"L\",
-   \"origin\": {
-     \"country\": \"PO\",
-     \"city\": \"string\"
-   }
-  }")
-
-  )
