@@ -11,7 +11,7 @@ You might not want to use `core.async` or callbacks to handle responses from HTT
 
 If you want a HTTP library that does everything, this one isn't for you. 
 
-This library won't deal with encoding of the request body into your required format, it won't deal decoding the response body, it won't set content-type headers, it won't set accept headers. That's all up to you.
+This library won't deal with encoding of the request body into your required format, it won't decode your response, it won't set content-type headers, it won't set accept headers. That's all up to you.
 
 ## Using this library
 The request object passed to this library should take the form of the Ring request map. Requests will immediately return a promise that will eventually be resolved to contain a Ring response map. The implementation of promises used comes from [Promesa](https://funcool.github.io/promesa/latest/). Non-sucessful HTTP requests will be rejected but the value contained in the promise will still be a Ring response map. Success is defined by the `isSuccess()` method on the [XhrIo response](https://developers.google.com/closure/library/docs/xhrio)
