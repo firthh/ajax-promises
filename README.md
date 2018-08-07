@@ -1,5 +1,8 @@
 # ajax-promises
 ClojureScript + HTTP + Promises
+
+[![Clojars Project](https://img.shields.io/clojars/v/firthh/ajax-promises.svg)](https://clojars.org/firthh/ajax-promises)
+
 ## Why?
 
 We have two other libraries for HTTP requests on cljs, why do we need another one?
