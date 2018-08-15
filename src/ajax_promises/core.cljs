@@ -42,7 +42,9 @@
    :post "POST"
    :put "PUT"
    :head "HEAD"
-   :options "OPTIONS"})
+   :options "OPTIONS"
+   :delete "DELETE"
+   :patch "PATCH"})
 
 (defn xhr-request [{:keys [uri request-method body headers]
                     :or {body ""
@@ -70,5 +72,8 @@
 (defn PUT [request]
   (xhr-request (merge request {:request-method :put})))
 
-(def DELETE)
-(def PATCH)
+(defn DELETE [request]
+  (xhr-request (merge request {:request-method :delete})))
+
+(defn PATCH [request]
+  (xhr-request (merge request {:request-method :patch})))

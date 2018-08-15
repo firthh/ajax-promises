@@ -6,9 +6,9 @@
                  [adzerk/boot-cljs            "2.1.4" :scope "test"]
                  [doo                         "0.1.8" :scope "test"]])
 
-(set-env! :repositories [["clojars" {:url "https://clojars.org/repo/"
-                                     :username (System/getenv "CLOJARS_USER")
-                                     :password (System/getenv "CLOJARS_PASS")}]])
+(merge-env! :repositories [["clojars-push" {:url "https://clojars.org/repo/"
+                                            :username (System/getenv "CLOJARS_USER")
+                                            :password (System/getenv "CLOJARS_PASS")}]])
 
 (task-options!
  pom  {:project     'firthh/ajax-promises
@@ -18,7 +18,7 @@
        :scm         {:url "https://github.com/firthh/ajax-promises"}
        :license     {"EPL" "http://www.eclipse.org/legal/epl-v10.html"}})
 
-(task-options! push {:repo "clojars"})
+(task-options! push {:repo "clojars-push"})
 
 (deftask deploy [] (comp (pom) (jar) (push)))
 

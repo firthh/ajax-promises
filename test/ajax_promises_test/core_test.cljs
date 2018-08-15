@@ -35,6 +35,16 @@
                        (is (= 200 (:status response)))
                        (done))))))
 
+(deftest delete-test-status []
+  (async done
+         (-> (http/DELETE {:uri "http://localhost:3000/api/resource/ID101"})
+             (p/catch (fn [response]
+                        (is (= nil response))
+                        (done)))
+             (p/then (fn [response]
+                       (is (= 200 (:status response)))
+                       (done))))))
+
 (def post-body
  "{
    \"name\": \"string\",
@@ -61,6 +71,18 @@
 (deftest put-test-status []
   (async done
          (-> (http/PUT {:uri "http://localhost:3000/api/echo"
+                        :body post-body
+                        :headers {"Content-Type" "application/json"}})
+             (p/catch (fn [response]
+                        (is (= nil response))
+                        (done)))
+             (p/then (fn [response]
+                       (is (= 200 (:status response)))
+                       (done))))))
+
+(deftest put-test-status []
+  (async done
+         (-> (http/PATCH {:uri "http://localhost:3000/api/echo"
                         :body post-body
                         :headers {"Content-Type" "application/json"}})
              (p/catch (fn [response]
