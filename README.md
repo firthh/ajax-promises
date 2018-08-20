@@ -49,7 +49,7 @@ TODO
   - [x] PUT
   - [x] HEAD
   - [x] OPTIONS
-  - [ ] DELETE
-  - [ ] PATCH
+  - [x] DELETE
+  - [x] PATCH
 - [ ] Better support for authentication headers?
 - [ ] Documentation
